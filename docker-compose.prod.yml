@@ -1,0 +1,8 @@
+version: "3.8"
+
+services:
+  app:
+    image: n1ktrnv/audioplayer:latest
+    restart: always
+    ports:
+      - "80:80"
