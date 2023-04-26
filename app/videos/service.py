@@ -1,6 +1,6 @@
 from pathlib import Path
 
-from app.videos.shemas import AudioStream, Video
+from app.videos.shemas import AudioStream
 from app.config import CHUNK_SIZE, AUDIOS_DIR
 
 
