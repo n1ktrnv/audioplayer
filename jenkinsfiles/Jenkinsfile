@@ -11,7 +11,7 @@ pipeline {
         stage("checks") {
             steps {
                 bat "docker-compose up --build checks"
-                bat "docker compose rm checks -f"
+                bat "docker rm checks"
             }
         }
 
