@@ -10,8 +10,27 @@ pipeline {
     stages {
         stage("checks") {
             steps {
-                echo " ============== checks =================="
-                bat "docker-compose up --build -d checks"
+                bat "docker-compose up --build checks"
+                bat "docker compose rm checks -f"
+            }
+        }
+
+        stage("docker login") {
+            steps {
+                bat "docker login"
+            }
+        }
+
+        stage("docker build") {
+            steps {
+                bat "docker-compose build"
+                bat "docker tag audioplayer-app n1ktrnv/audioplayer:latest"
+            }
+        }
+
+        stage("docker push") {
+            steps {
+                bat "docker push n1ktrnv/audioplayer"
             }
         }
     }
