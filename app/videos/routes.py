@@ -8,9 +8,9 @@ routes = APIRouter()
 
 @routes.get('/videos/{video_id}')
 def audio_streaming(video_id: str, range: str = Header(None)):
-    start, end = range.replace('bytes=', '').split("-")
-    start = int(start)
-    end = int(end) if end else None
+    start_str, end_str = range.replace('bytes=', '').split("-")
+    start = int(start_str)
+    end = int(end_str) if end_str else None
     audio_stream = get_audio_stream(video_id, start, end)
     headers = {
         'Content-Range': f'bytes {audio_stream.start}-{audio_stream.end}/'

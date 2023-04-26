@@ -7,3 +7,9 @@ services:
     restart: on-failure
     ports:
       - "8080:80"
+
+  checks:
+    build:
+      context: .
+      dockerfile: ./checks/Dockerfile
+    container_name: checks
