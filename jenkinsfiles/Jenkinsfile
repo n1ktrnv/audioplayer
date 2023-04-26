@@ -1,0 +1,18 @@
+#!groovy
+properties([disableConcurrentBuilds()])
+
+pipeline {
+    agent any
+    triggers { pollSCM('* * * * *') }
+    options {
+        timestamps()
+    }
+    stages {
+        stage("checks") {
+            steps {
+                echo " ============== checks =================="
+                sh "make checks"
+            }
+        }
+    }
+}
