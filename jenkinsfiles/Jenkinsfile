@@ -10,14 +10,15 @@ pipeline {
     stages {
         stage("checks") {
             steps {
-                bat "docker-compose up --build checks"
-                bat "docker rm checks"
+                bat "docker-compose up --build -d checks"
             }
         }
-
-        stage("docker login") {
+        
+      stage("docker login") {
             steps {
-                bat "docker login"
+                withCredentials([usernamePassword(credentialsId: 'dockerhub_n1ktrnv', usernameVariable: 'USERNAME', passwordVariable: 'PASSWORD')]) {
+                    bat "docker login -u $USERNAME -p $PASSWORD"
+                }
             }
         }
 
@@ -25,12 +26,13 @@ pipeline {
             steps {
                 bat "docker-compose build"
                 bat "docker tag audioplayer-app n1ktrnv/audioplayer:latest"
+                bat "docker images"
             }
         }
 
         stage("docker push") {
             steps {
-                bat "docker push n1ktrnv/audioplayer"
+                bat "docker push n1ktrnv/audioplayer:latest"
             }
         }
     }
