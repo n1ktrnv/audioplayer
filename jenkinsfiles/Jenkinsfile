@@ -26,12 +26,13 @@ pipeline {
             steps {
                 bat "docker-compose build"
                 bat "docker tag audioplayer-app n1ktrnv/audioplayer:latest"
+                bat "docker images"
             }
         }
 
         stage("docker push") {
             steps {
-                bat "docker push n1ktrnv/audioplayer"
+                bat "docker push n1ktrnv/audioplayer:latest"
             }
         }
     }
