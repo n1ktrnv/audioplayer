@@ -11,7 +11,7 @@ pipeline {
         stage("checks") {
             steps {
                 echo " ============== checks =================="
-                sh "make checks"
+                sh "docker-compose up --build -d checks"
             }
         }
     }
