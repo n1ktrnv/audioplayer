@@ -9,3 +9,5 @@ RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
 COPY ./app /code/app
 
 RUN mypy app
+
+RUN python -m unittest discover
