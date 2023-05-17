@@ -1,15 +1,24 @@
 version: "3.8"
 
 services:
-  app:
+  app-service:
     build: .
     container_name: app
     restart: on-failure
     ports:
       - "8080:80"
+    networks:
+      - mynetwork
 
-  checks:
+  checks-service:
+    depends_on:
+      - app-service
     build:
       context: .
       dockerfile: ./checks/Dockerfile
     container_name: checks
+    networks:
+      - mynetwork
+
+networks:
+  mynetwork:

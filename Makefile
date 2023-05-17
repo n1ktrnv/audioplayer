@@ -1,5 +1,5 @@
 up:
-	docker-compose up --build -d app
+	docker-compose up --build -d app-service
 
 stop:
 	docker-compose stop
@@ -10,4 +10,4 @@ push:
 	docker push n1ktrnv/audioplayer
 
 check:
-	docker-compose up --build -d checks
+	docker-compose up --build -d checks-service
