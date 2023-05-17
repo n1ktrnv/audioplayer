@@ -1,3 +1,4 @@
+import time
 import unittest
 import requests
 
@@ -10,7 +11,7 @@ class TestAudioStreaming(unittest.TestCase):
         filesize = 2048
 
         # Отправка запроса к API
-        response = requests.get(f'http://localhost:8000/videos/{video_id}', headers=headers)
+        response = requests.get(f'http://app:80/videos/{video_id}', headers=headers)
 
         # Проверка статусного кода ответа
         self.assertEqual(response.status_code, 206)
